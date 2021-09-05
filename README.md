@@ -1,2 +1,2 @@
-# Hello world
-qq
+# 看看这里
+**一个python学习仓库**

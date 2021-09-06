@@ -1,4 +1,7 @@
 import json,csv,hmac,os,teacher_login
+import random
+
+
 def file_path(path,*filename):
     if path=='files':
         return os.path.join(os.path.abspath('.'), 'files', *filename[0])
@@ -20,13 +23,12 @@ def main():#主界面文件读取
     try:
         with open(file_path('files',('main.txt',)), 'r', encoding='utf8') as f:
             concent=f.read()
-            print(concent,'\n请输入1-3：')
+            print(concent)
+            print('请输入1-3：')
             click=input()
             return click
     except:
-        print('error，message：未找到文件')
-        print(file_path('files',('main.txt',)))
-        return quit()
+        raise print('error，message：未找到文件')
 
 def data_teacher_read():#教师账号信息读取
     try:
@@ -38,7 +40,8 @@ def data_teacher_write(data):#写入教师账号信息
     with open(file_path("data"), 'w', encoding='utf8') as f:
         f.write(json.dumps(data))
 def sha(data):#sha256加密
-    s=hmac.new(b'hsin', data.encode('utf8'), digestmod='SHA256')
+    key=hmac.new(b'19990127','hsin'.encode('utf8'),digestmod='SHA256')
+    s=hmac.new(key.hexdigest().encode('utf8'), data.encode('utf8'), digestmod='SHA256')
     return s.hexdigest()
 def register():#注册账号
     while True:

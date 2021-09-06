@@ -1,4 +1,4 @@
-import json,login,csv,hmac,os,index
+import json,csv,hmac,os,index
 # 学生信息增删改查
 
 class Teacher_Main():
@@ -50,7 +50,7 @@ class Teacher_Main():
 
     def performance(self):  # 读取主界面2文件
         try:
-            with open(index.file + 'performance.txt', 'r', encoding='utf8') as f:
+            with open(index.file_path('files',('performance.txt',)), 'r', encoding='utf8') as f:
                 print(f.read().replace('x', self.__account_name))
         except:
             print('error，message：未找到文件')
@@ -60,7 +60,7 @@ class Teacher_Main():
     # 教师账号下的学生信息读取
     def student_data_read(self):
         try:
-            f = open(index.file + '*_student.csv'.replace('*', self.__account_name), 'r', encoding='utf8')
+            f = open(index.file_path('files',('*_student.csv'.replace('*', self.__account_name),)), 'r', encoding='utf8')
             ff = csv.reader(f)
             # 返回列表
             return ff
@@ -69,7 +69,7 @@ class Teacher_Main():
 
     # 写入教师账号下的学生信息，data：传列表，[学生姓名,年龄]
     def student_data_write(self, data):
-        f = open(index.file + '*_student.csv'.replace('*', self.__account_name), 'a', encoding='utf8', newline='')
+        f = open(index.file_path('files',('*_student.csv'.replace('*', self.__account_name),)), 'a', encoding='utf8', newline='')
         ff = csv.writer(f)
         ff.writerow(data)
         f.close()
@@ -94,7 +94,7 @@ class Teacher_Main():
                 break
             else:
                 print('查找不到信息')
-        f = open(index.file + '*_student.csv'.replace('*', self.__account_name), 'w', encoding='utf8', newline='')
+        f = open(index.file_path('files',('*_student.csv'.replace('*', self.__account_name),)) , 'w', encoding='utf8', newline='')
         ff = csv.writer(f)
         ff.writerows(s)
         f.close()
@@ -120,7 +120,7 @@ class Teacher_Main():
                 print('查找不到该学生信息')
             if exit_flag == True:
                 break
-        f = open(index.file + '*_student.csv'.replace('*', self.__account_name), 'w', encoding='utf8', newline='')
+        f = open(index.file_path('files',('*_student.csv'.replace('*', self.__account_name),)), 'w', encoding='utf8', newline='')
         ff = csv.writer(f)
         ff.writerows(s)
         f.close()

@@ -91,18 +91,18 @@ def student_data_delete(name):#删除学生信息
     exit_flag=False
     while True:
         student_name=input('请输入学生姓名')
-        for i,j in enumerate(s):
-            if student_name==j[0]:
+        for i in s:
+            if student_name==i[0]:
                 exit_flag=True
-                s.pop(i)
+                s.remove(i)
                 print('删除成功')
                 break
             if exit_flag==True:
                 break
-        if exit_flag==True:
-            break
         else:
             print('查找不到该学生信息')
+        if exit_flag==True:
+            break
     f = open(index.file + '*_student.csv'.replace('*', name), 'w', encoding='utf8',newline='')
     ff = csv.writer(f)
     ff.writerows(s)

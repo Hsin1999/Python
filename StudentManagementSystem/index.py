@@ -1,6 +1,4 @@
 import json,csv,hmac,os,teacher_login
-import random
-
 
 def file_path(path,*filename):
     if path=='files':

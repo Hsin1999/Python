@@ -34,23 +34,29 @@ class Datebase():
             self.db.commit()
         except:
             self.db.rollback()
-        self.db.close()
+
     def update_Mysql(self,sql):
         try:
             self.cur.execute(sql)
             self.db.commit()
         except:
             self.db.rollback()
-        self.db.close()
+
     def insert_Mysql(self,sql):
         try:
             self.cur.execute(sql)
             self.db.commit()
         except:
             self.db.rollback()
-        self.db.close()
+    def close_Mysql(self):
+        self.cur.close()
+
 s=Datebase('47.101.53.77','root','ppaa1122','test')
-print(s.select_Mysql('select * from t_student',1))
+s.update_Mysql("update t_student set name='傻逼王振波' where id=1")
+for i in s.select_Mysql('select * from t_student',0):
+    print(i)
+s.close_Mysql()
+
 
 
 

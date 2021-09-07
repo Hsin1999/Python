@@ -1,6 +1,12 @@
 import json,csv,hmac,os,teacher_login
-file=os.path.abspath('.')+'\\files\\'
-teacher_data=os.path.abspath('.')+r'\data\teacher_data'
+import random
+
+
+def file_path(path,*filename):
+    if path=='files':
+        return os.path.join(os.path.abspath('.'), 'files', *filename[0])
+    if path=='data':
+        return os.path.join(os.path.abspath('.'),'data','teacher_data')
 def start():#登录主界面
     while True:
         click=main()
@@ -15,27 +21,27 @@ def start():#登录主界面
 
 def main():#主界面文件读取
     try:
-        with open(file+'main.txt', 'r', encoding='utf8') as f:
+        with open(file_path('files',('main.txt',)), 'r', encoding='utf8') as f:
             concent=f.read()
-            print(concent,'\n请输入1-3：')
+            print(concent)
+            print('请输入1-3：')
             click=input()
             return click
     except:
-        print('error，message：未找到文件')
-        print(file + 'main.txt')
-        return quit()
+        raise print('error，message：未找到文件')
 
 def data_teacher_read():#教师账号信息读取
     try:
-        with open(teacher_data,'r',encoding='utf8') as f:
+        with open(file_path("data"),'r',encoding='utf8') as f:
             return json.loads(f.read())
     except:
         return {}
 def data_teacher_write(data):#写入教师账号信息
-    with open(teacher_data, 'w', encoding='utf8') as f:
+    with open(file_path("data"), 'w', encoding='utf8') as f:
         f.write(json.dumps(data))
 def sha(data):#sha256加密
-    s=hmac.new(b'hsin', data.encode('utf8'), digestmod='SHA256')
+    key=hmac.new(b'19990127','hsin'.encode('utf8'),digestmod='SHA256')
+    s=hmac.new(key.hexdigest().encode('utf8'), data.encode('utf8'), digestmod='SHA256')
     return s.hexdigest()
 def register():#注册账号
     while True:
@@ -58,7 +64,7 @@ def register():#注册账号
     data_teacher=data_teacher_read()
     data_teacher[teacher_name]=sha(password)
     data_teacher_write(data_teacher)
-    f=open(file + '*_student.csv'.replace('*',teacher_name), 'w', encoding='utf8',newline='')
+    f=open(file_path('files',('*_student.csv'.replace('*',teacher_name),)) , 'w', encoding='utf8',newline='')
     ff=csv.writer(f)
     ff.writerow(['姓名','年龄'])
     f.close()

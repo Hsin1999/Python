@@ -1,16 +1,11 @@
-import json
-import login
-import csv
-import hmac
-import os
-
+import json,csv,hmac,os,teacher_login
 file=os.path.abspath('.')+'\\files\\'
 teacher_data=os.path.abspath('.')+r'\data\teacher_data'
 def start():#登录主界面
     while True:
         click=main()
         if click=='1':
-            login.login()
+            s=teacher_login.Teacher_Main()
         elif click=='2':
             register()
         elif click=='3':

@@ -52,7 +52,7 @@ class Datebase():
         self.cur.close()
 
 s=Datebase('47.101.53.77','root','ppaa1122','test')
-s.update_Mysql("update t_student set name='傻逼王振波' where id=1")
+s.update_Mysql("update t_student set name='wzb' where id=1")
 for i in s.select_Mysql('select * from t_student',0):
     print(i)
 s.close_Mysql()

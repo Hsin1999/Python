@@ -67,12 +67,24 @@
 import asyncio
 import threading
 
-import mysql
-async def a():
-    return 123
-async def select():
-    s = mysql.Database('47.101.53.77', 'root', 'ppaa1122', 'test')
-    r=await s.select_Mysql('select * from t_student',1)
-    return r
-task=asyncio.create_task(select())
-asyncio.run(task)
+# import mysql
+# loop=asyncio.get_event_loop()
+# async def a():
+#     return 123
+# async def select():
+#     s = mysql.Database('47.101.53.77', 'root', 'ppaa1122', 'test')
+#     task=await s.select_Mysql('select * from t_student',1)
+#
+# loop.run_until_complete(select())
+import threading
+import asyncio
+
+async def hello():
+    print('Hello world! (%s)' % threading.currentThread())
+    await asyncio.sleep(1)
+    print('Hello again! (%s)' % threading.currentThread())
+
+loop = asyncio.get_event_loop()
+tasks = [hello(), hello()]
+loop.run_until_complete(asyncio.wait(tasks))
+loop.close()

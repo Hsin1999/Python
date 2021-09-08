@@ -1,6 +1,6 @@
 import pymysql
 #Datebase（地址，用户名，密码，数据库）
-class Datebase():
+class Database():
     def __init__(self,host,user,password,database):
         self.host=host
         self.user=user
@@ -51,7 +51,7 @@ class Datebase():
     def close_Mysql(self):
         self.cur.close()
 
-s=Datebase('47.101.53.77','root','ppaa1122','test')
+s=Database('47.101.53.77','root','ppaa1122','test')
 s.update_Mysql("update t_student set name='wzb' where id=1")
 for i in s.select_Mysql('select * from t_student',0):
     print(i)

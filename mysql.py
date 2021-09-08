@@ -1,4 +1,5 @@
 import pymysql
+import re
 #Datebase（地址，用户名，密码，数据库）
 class Database():
     def __init__(self,host,user,password,database):
@@ -50,12 +51,9 @@ class Database():
             self.db.rollback()
     def close_Mysql(self):
         self.cur.close()
+s = Database('47.101.53.77', 'root', 'ppaa1122', 'test')
+a=s.select_Mysql('select * from t_student',1)
 
-s=Database('47.101.53.77','root','ppaa1122','test')
-s.update_Mysql("update t_student set name='wzb' where id=1")
-for i in s.select_Mysql('select * from t_student',0):
-    print(i)
-s.close_Mysql()
 
 
 

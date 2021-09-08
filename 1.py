@@ -68,11 +68,11 @@ import asyncio
 import threading
 
 import mysql
-loop=asyncio.get_event_loop()
+async def a():
+    return 123
 async def select():
     s = mysql.Database('47.101.53.77', 'root', 'ppaa1122', 'test')
-    ss=s.select_Mysql('select * from t_student', 0)
-    await ss
-    return ss
-loop.run_until_complete(select())
-loop.close()
+    r=await s.select_Mysql('select * from t_student',1)
+    return r
+task=asyncio.create_task(select())
+asyncio.run(task)

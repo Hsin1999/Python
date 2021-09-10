@@ -11,7 +11,7 @@ async def index(request):
     aa=str(a).encode('utf8')
     await asyncio.sleep(0.5)
     return web.Response(body=aa,content_type='text/html',charset='utf8')
-
+@routes.get('/{name}')
 async def hello(request):
     await asyncio.sleep(0.5)
     text = '<h1>Hello, %s!</h1>' % request.match_info['name']

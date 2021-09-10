@@ -4,7 +4,7 @@ from datetime import datetime
 def time_Now():
     return datetime.now().strftime('%y-%m-%d')
 
-#获取主目录绝对路径or当前文件名 （[0]or[1]）
+#获取主目录绝对路径or当前文件名 （func[0]or[1]）
 def main_Path():
     return os.path.split(os.path.abspath(__file__))
 def request_param():

@@ -5,6 +5,7 @@ def test_baidu1(sql):
     response.encoding='utf8'
     select=sql.select_Mysql('select * from t_student',1)
     print(select)
+    assert response.url=='http://www.baidu.com1/'
     log.write_Log(response.url)
 def test_baidu2(sql):
     response=requests.request('get','http://www.baidu.com')

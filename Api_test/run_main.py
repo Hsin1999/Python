@@ -1,3 +1,7 @@
+'''
+pip install -r requirement.txt
+安装必备环境
+'''
 import time,os,pytest,config
 from datetime import datetime
 if __name__ == '__main__':

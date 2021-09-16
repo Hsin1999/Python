@@ -1,0 +1,24 @@
+test1:
+  method: get
+  url: http://www.baidu.com
+  status_code: 200
+test2:
+  method: get
+  url: http://www.hao123.com
+  status_code: 200
+test3:
+  method: get
+  url: http://www.163.com
+  status_code: 200
+test4:
+  method: get
+  url: http://www.qq.com
+  status_code: 200
+test5:
+  method: get
+  url: http://www.taobao.com
+  status_code: 200
+test6:
+  method: get
+  url: http://www.jd.com
+  status_code: 200

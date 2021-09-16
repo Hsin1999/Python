@@ -1,5 +1,8 @@
 import pytest,requests,config
 #参数化test
+class Request():
+    def __init__(self):
+        
 @pytest.mark.parametrize('method,url,status_code',config.params())
 def test_all(url,method,status_code):
     response=requests.request(method,url=url)

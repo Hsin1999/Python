@@ -143,14 +143,133 @@ import time
 #     movies = loop.run_until_complete(asyncio.gather(*tasks))
 #     print(movies)
 #     print("异步用时为：{}".format(datetime.now() - start))
-import yaml
-y='''
-name: 回来
-age: 0
-job: 12
-'''
-y=yaml.unsafe_load(y)
-with open('api/testcase.yaml', 'r') as f:
-    s=yaml.unsafe_load(f)
-print(y)
-print(s)
+# import yaml
+# y='''
+# name: 回来
+# age: 0
+# job: 12
+# '''
+# y=yaml.unsafe_load(y)
+# with open('api/testcase.yaml', 'r') as f:
+#     s=yaml.unsafe_load(f)
+# print(y)
+# print(s)
+# import threading
+# s=2
+# lock=threading.Lock()
+# def run(n):
+#     global s
+#     for i in range(1,n):
+#         lock.acquire()
+#         s*=s
+#         print(s)
+#         lock.release()
+# def run1(n):
+#     global s
+#     for i in range(1,n):
+#         lock.acquire()
+#         s/=s
+#         print(s)
+#         lock.release()
+# a=threading.Thread(target=run,args=(100,))
+# b=threading.Thread(target=run1,args=(100,))
+# a.start()
+# b.start()
+# a.join()
+# b.join()
+# from collections import deque
+# a=deque()
+# a.append('1')
+# a.append('1')
+# a.append('1')
+# a.append('1')
+# a.appendleft('2')
+# a.pop()
+# print(a)
+# import random, time, queue
+# from multiprocessing.managers import BaseManager
+#
+# # 发送任务的队列:
+#
+# # 接收结果的队列:
+# result_queue = queue.Queue()
+#
+# # 从BaseManager继承的QueueManager:
+# class QueueManager(BaseManager):
+#     pass
+# def task_quque():
+#     task_queue = queue.Queue()
+#     return task_queue
+# # 把两个Queue都注册到网络上, callable参数关联了Queue对象:
+# QueueManager.register('get_task_queue',task_queue())
+# QueueManager.register('get_result_queue', callable=lambda: result_queue)
+# # 绑定端口5000, 设置验证码'abc':
+# manager = QueueManager(address=('', 5000), authkey=b'abc')
+# # 启动Queue:
+# manager.start()
+# # 获得通过网络访问的Queue对象:
+# task = manager.get_task_queue()
+# result = manager.get_result_queue()
+# # 放几个任务进去:
+# for i in range(10):
+#     n = random.randint(0, 10000)
+#     print('Put task %d...' % n)
+#     task.put(n)
+# # 从result队列读取结果:
+# print('Try get results...')
+# for i in range(10):
+#     r = result.get(timeout=10)
+#     print('Result: %s' % r)
+# # 关闭:
+# manager.shutdown()
+# print('master exit.')#!/usr/bin/env python3
+# # -*- coding: utf-8 -*-
+#
+# import random,time,queue
+# from multiprocessing.managers import BaseManager
+# #发送任务队列
+# task_queue=queue.Queue()
+# #接收结果队列
+# result_queue=queue.Queue()
+#
+# #继承BaseManager
+# class QueueManager(BaseManager):
+#     pass
+# def return_task_queue():
+#     #global 用于函数内部，修改全局变量的值
+#     global task_queue
+#     return task_queue
+# def return_result_queue():
+#     global result_queue
+#     return result_queue
+# if __name__=='__main__':
+#     #将两个Queue注册到网络上，callable参数关联Queue对象
+#     #！win10中callale不对lambda匿名函数做处理
+#     QueueManager.register('get_task_queue',callable=return_task_queue)
+#     QueueManager.register('get_result_queue',callable=return_result_queue)
+#     #绑定端口5000，这5000怎么来的？两个文件中的端口一样就行！，设置验证码abc
+#     #通过QueueManager将Queue暴露出去
+#     manager=QueueManager(address=('127.0.0.1',5000),authkey=b'abc')
+#     manager.start()
+#     task=manager.get_task_queue()
+#     result=manager.get_result_queue()
+#     #放10个任务进去
+#     for i in range(10):
+#         n=random.randint(0,1000)
+#         print('Put task %d...'%n)
+#         #将数据放到任务队列
+#         task.put(n)
+#     #取任务执行结果
+#     print('Try get results...')
+#     for i in range(10):
+#         #从结果队列中取结果
+#         #等待10是因为计算需要时间
+#         r=result.get(timeout=10)
+#         print('REsult:%s'%r)
+#     #关闭
+#     manager.shutdown()
+#     print('master end')
+import openpyxl
+f=openpyxl.open('1.xlsx')
+sheet=f.worksheets[0]
+f.create_named_range('qwe',sheet)

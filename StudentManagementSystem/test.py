@@ -1,5 +1,6 @@
 import os
-print(os.path.dirname(__file__))
-print(os.path.abspath(""))
-print(__file__)
-print(os.path.join(os.path.abspath(""), 'files'))
+a=os.path.dirname(__file__)
+b=os.path.abspath(__file__)
+print(b)
+print(os.path.dirname(os.path.dirname(b)))
+print(os.path.realpath("/usr/bin/python"))

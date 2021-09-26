@@ -1,6 +1,8 @@
 '''
 pip install -r requirement.txt
 安装必备环境
+pip freeze >requirement.txt
+导出当前配置环境
 '''
 
 import time,os,pytest,config

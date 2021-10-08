@@ -1,6 +1,9 @@
 import logging, time, os
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+print(os.path.dirname(os.path.realpath(__file__)))
+print(os.path.abspath(__file__))
+print(BASE_PATH)
 # 定义日志文件路径
 LOG_PATH = os.path.join(BASE_PATH, "log")
 if not os.path.exists(LOG_PATH):

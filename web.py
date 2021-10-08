@@ -20,5 +20,8 @@ async def hello(request):
     return web.Response(body=text.encode('utf-8'), content_type='text/html')
 app = web.Application()
 app.add_routes(routes)
-web.run_app(app, host='0.0.0.0', port=8000)
+web.run_app(app, host='0.0.0.0', port=8080)
 logging.info('开始记录')
+'''
+python -m http.server 在当前文件夹开启简单服务器
+'''

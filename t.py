@@ -65,7 +65,7 @@
 # loop.run_until_complete(coro)
 # loop.close()
 # import asyncio
-import threading
+# import threading
 
 # import mysql
 # loop=asyncio.get_event_loop()
@@ -88,8 +88,8 @@ import threading
 # loop = asyncio.get_event_loop()
 # loop.run_until_complete(hello())
 # loop.close()
-import asyncio
-import time
+# import asyncio
+# import time
 # async def a(x):
 #     await asyncio.sleep(x)
 #     print('我在运行a%s'%x)
@@ -269,7 +269,17 @@ import time
 #     #关闭
 #     manager.shutdown()
 #     print('master end')
-import openpyxl
-f=openpyxl.open('1.xlsx')
-sheet=f.worksheets[0]
-f.create_named_range('qwe',sheet)
+# import openpyxl
+# f=openpyxl.open('1.xlsx')
+# sheet=f.worksheets[0]
+# f.create_named_range('qwe',sheet)
+# import os
+# def path():
+#     return os.path.abspath(__file__)
+
+l1 = [ 'b' , 'c' , 'd' , 'b' , 'c' , 'a' , 'a' ]
+a=set(l1)
+a=list(a)
+print(a)
+s=sorted(a)
+print(s)

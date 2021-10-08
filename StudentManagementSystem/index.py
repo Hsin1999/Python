@@ -1,8 +1,8 @@
 import json,csv,hmac,os,teacher_login
 
-def file_path(path,*filename):
+def file_path(path,filename):
     if path=='files':
-        return os.path.join(os.path.abspath('.'), 'files', *filename[0])
+        return os.path.join(os.path.abspath('.'), 'files', filename[0])
     if path=='data':
         return os.path.join(os.path.abspath('.'),'data','teacher_data')
 def start():#登录主界面

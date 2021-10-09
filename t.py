@@ -306,6 +306,7 @@ from logging.handlers import RotatingFileHandler
 class Log:
     logger=logging.getLogger('logger')
     logger1=logging.getLogger('logger.qq')
+    logger1.propagate=True
     logger.setLevel(logging.INFO)
     formatter=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     formatter1=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')

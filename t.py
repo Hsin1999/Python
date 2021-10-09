@@ -277,9 +277,44 @@
 # def path():
 #     return os.path.abspath(__file__)
 
-l1 = [ 'b' , 'c' , 'd' , 'b' , 'c' , 'a' , 'a' ]
-a=set(l1)
-a=list(a)
-print(a)
-s=sorted(a)
-print(s)
+# l1 = [ 'b' , 'c' , 'd' , 'b' , 'c' , 'a' , 'a' ]
+# a=set(l1)
+# a=list(a)
+# print(a)
+# s=sorted(a)
+# print(s)
+import logging
+from logging.handlers import RotatingFileHandler
+# logger = logging.getLogger()  # 日志器名称默认为root
+# logger1 = logging.getLogger()  # 日志器名称默认为root
+#
+# # 设置两个处理器handler
+# console_handler = logging.StreamHandler()
+# console_handler1 = logging.StreamHandler()
+#
+# # 给两个相同名称的logger添加上处理器
+# logger.addHandler(console_handler)
+# logger1.addHandler(console_handler1)
+#
+# # 设置一下格式
+# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s')
+# console_handler.setFormatter(formatter)
+# console_handler1.setFormatter(formatter)
+#
+# # 输出日志记录
+# logger1.warning("输出一条日志记录")
+class Log:
+    logger=logging.getLogger('logger')
+    logger1=logging.getLogger('logger.qq')
+    logger.setLevel(logging.INFO)
+    formatter=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter1=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    console=logging.StreamHandler()
+    file=logging.handlers.RotatingFileHandler(filename='4.log',encoding='utf8',maxBytes=1024,backupCount=2)
+    file.setLevel(logging.INFO)
+    console.setFormatter(formatter)
+    file.setFormatter(formatter1)
+    logger.addHandler(console)
+    logger.addHandler(file)
+    logger1.info('12313')
+Log()

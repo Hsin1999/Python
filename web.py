@@ -1,7 +1,7 @@
 import asyncio
 import mysql
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 from aiohttp import web
 routes = web.RouteTableDef()
 async def get_text():
@@ -18,10 +18,11 @@ async def hello(request):
     await asyncio.sleep(0.5)
     text = '<h1>Hello, %s!</h1>' % request.match_info['name']
     return web.Response(body=text.encode('utf-8'), content_type='text/html')
+logging.debug('开始记录')
 app = web.Application()
 app.add_routes(routes)
 web.run_app(app, host='0.0.0.0', port=8080)
-logging.info('开始记录')
+
 '''
 python -m http.server 在当前文件夹开启简单服务器
 '''

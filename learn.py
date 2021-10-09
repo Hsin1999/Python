@@ -1,27 +1,43 @@
-def coroutine_example(name):
-    print('start coroutine...name:', name)
-    x = yield name #调用next()时，产出yield右边的值后暂停；调用send()时，产出值赋给x，并往下运行
-    print('send值:', x)
-    return 'zhihuID: Zarten'
+# def coroutine_example(name):
+#     print('start coroutine...name:', name)
+#     x = yield name #调用next()时，产出yield右边的值后暂停；调用send()时，产出值赋给x，并往下运行
+#     print('send值:', x)
+#     return 'zhihuID: Zarten'
+#
+# def grouper2():
+#     result2 = yield from coroutine_example('Zarten') #在此处暂停，等待子生成器的返回后继续往下执行
+#     print('result2的值：', result2)
+#     return result2
+#
+# def grouper():
+#     result = yield from grouper2() #在此处暂停，等待子生成器的返回后继续往下执行
+#     print('result的值：', result)
+#     return result
+#
+# def main():
+#     g = grouper()
+#     next(g)
+#     print("我继续执行了")
+#     try:
+#         g.send(10)
+#     except StopIteration as e:
+#         print('返回值：', e.value)
+#
+# if __name__ == '__main__':
+#     main()
+import asyncio
+async def a():
+    await asyncio.sleep(1)
+    print('我是1%s'%__name__)
+async def b():
+    await asyncio.sleep(1)
+    print('我是%s'%__name__)
+def c():
+    print('nihao')
+async def main():
+    task1=asyncio.create_task(a())
+    task2=asyncio.create_task(b())
+    task3=asyncio.to_thread(c)
+    await asyncio.gather(task2,task1,task3)
 
-def grouper2():
-    result2 = yield from coroutine_example('Zarten') #在此处暂停，等待子生成器的返回后继续往下执行
-    print('result2的值：', result2)
-    return result2
-
-def grouper():
-    result = yield from grouper2() #在此处暂停，等待子生成器的返回后继续往下执行
-    print('result的值：', result)
-    return result
-
-def main():
-    g = grouper()
-    next(g)
-    print("我继续执行了")
-    try:
-        g.send(10)
-    except StopIteration as e:
-        print('返回值：', e.value)
-
-if __name__ == '__main__':
-    main()
+asyncio.run(main())

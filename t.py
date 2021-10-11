@@ -318,4 +318,14 @@ class Log:
     logger.addHandler(console)
     logger.addHandler(file)
     logger1.info('12313')
+    logger.info('www')
 Log()
+import re
+a=re.compile('^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$')
+aaa=a.match('18525358730@163.com')
+print(aaa.group(0))
+
+
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+ll=sorted(L,key=lambda x:[x[1],x[0].lower()],reverse=True)
+print(ll)

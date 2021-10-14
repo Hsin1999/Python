@@ -284,6 +284,8 @@
 # s=sorted(a)
 # print(s)
 import logging
+import re
+import time
 from logging.handlers import RotatingFileHandler
 # logger = logging.getLogger()  # 日志器名称默认为root
 # logger1 = logging.getLogger()  # 日志器名称默认为root
@@ -303,29 +305,221 @@ from logging.handlers import RotatingFileHandler
 #
 # # 输出日志记录
 # logger1.warning("输出一条日志记录")
-class Log:
-    logger=logging.getLogger('logger')
-    logger1=logging.getLogger('logger.qq')
-    logger1.propagate=True
-    logger.setLevel(logging.INFO)
-    formatter=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    formatter1=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    console=logging.StreamHandler()
-    file=logging.handlers.RotatingFileHandler(filename='4.log',encoding='utf8',maxBytes=1024,backupCount=2)
-    file.setLevel(logging.INFO)
-    console.setFormatter(formatter)
-    file.setFormatter(formatter1)
-    logger.addHandler(console)
-    logger.addHandler(file)
-    logger1.info('12313')
-    logger.info('www')
-Log()
-import re
-a=re.compile('^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$')
-aaa=a.match('18525358730@163.com')
-print(aaa.group(0))
+# class Log:
+#     logger=logging.getLogger('logger')
+#     logger1=logging.getLogger('logger.qq')
+#     logger1.propagate=True
+#     logger.setLevel(logging.INFO)
+#     formatter=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#     formatter1=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#     console=logging.StreamHandler()
+#     file=logging.handlers.RotatingFileHandler(filename='4.log',encoding='utf8',maxBytes=1024,backupCount=2)
+#     file.setLevel(logging.INFO)
+#     console.setFormatter(formatter)
+#     file.setFormatter(formatter1)
+#     logger.addHandler(console)
+#     logger.addHandler(file)
+#     logger1.info('12313')
+#     logger.info('www')
+# Log()
+# import re
+# a=re.compile('^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$')
+# aaa=a.match('18525358730@163.com')
+# print(aaa.group(0))
+#
+#
+# L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+# ll=sorted(L,key=lambda x:[x[1],x[0].lower()],reverse=True)
+# print(ll)
+# print(ord('我'))
+# print('\u4e2d\u6587')
+# print(int('1000',base=10))
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# print(f'hello,world{time.strftime("%Y-%m-%d %H:%M:%S")}')
+# import hmac
+# a=hmac.new(key=b'www',msg=b'wqwe',digestmod='SHA1')
+# print(int(a.hexdigest(),base=16))
+# s={}
+# s[a.hexdigest()]=1
+# print(s)
+# import time
+# start= time.time()
+# for i in range(0,1001):
+#     for j in range(0,1001):
+#         for k in range(0,1001):
+#             if i+j+k==1000 and i**2+j**2==k**2:
+#                 print(i,j,k)
+# end = time.time()
+# print("总开销：",end-start)#总开销： 126.49699997901917
+#
+# start1= time.time()
+# for i in range(0,1001):
+#     for j in range(0,1001):
+#         k=1000-i-j
+#         if i**2+j**2==k**2:
+#             print(i,j,k)
+# end1= time.time()
+# print("总开销：",end1-start1)#总开销： 1.0120000839233398
+# print(bin(1111))
+# print(hex(123456))
+# print(oct(111))
+
+# class SingleNode(object):
+#     def __init__(self,item):
+#         self.item=item
+#         self.next=None
+#
+# class Student(object):
+#
+#     @property
+#     def birth(self):
+#         return self._birth
+#
+#     @birth.setter
+#     def birth(self, value):
+#         self._birth = value
+#
+#     @property
+#     def age(self):
+#         return 2015 - self._birth
+#     def __call__(self, *args, **kwargs):
+#         print('111')
+# s=Student()
+# s.birth=1
+# print(s._birth)
+# print(s.age)
+# print(s)
+# s()
+# class Chain(object):
+#
+#     def __init__(self, path=''):
+#         self._path = path
+#
+#     def __getattr__(self, path):
+#         return Chain('%s/%s' % (self._path, path))
+#
+#     def __str__(self):
+#         return self._path
+#
+#     __repr__ = __str__
+# a=Chain()
+# s=a.qq.qw.er
+# print(a)
+# print(s)
+# from dataclasses import dataclass
+# @dataclass
+# class Car:
+#     color:str
+#     mileage:float
+#     automatic:bool
+# car1=Car('red',3100.9,True)
+# print(car1)
+# from collections import namedtuple
+# Car=namedtuple('Car','color mileage automatic')
+# car1=Car('red',100.9,True)
+# print(car1)
+# from queue import Queue
+# import threading
+# q=Queue()
+# lock=threading.Lock()
+# data=threading.local
+# s=10000
+# def c(time):
+#     global s
+#     for i in range(time):
+#         lock.acquire()
+#         s-=100
+#         print(s)
+#         lock.release()
+# def d(time):
+#     global s
+#     for i in range(time):
+#         lock.acquire()
+#         s += 100
+#         print(s)
+#         lock.release()
+#
+# def main():
+#     cc=threading.Thread(target=c,args=(100000,))
+#     dd=threading.Thread(target=d,args=(100000,))
+#     cc.start()
+#     dd.start()
+#     cc.join()
+#     dd.join()
+#     print(s)
+# main()
+# def aa(q,data):
+#     global r
+#     for i in range(1,101):
+#         # lock.acquire()
+#         r*=100
+#         q.put(i*r/data)
+#         data+=1
+#         # lock.release()
+#     print('线程1%d'%data)
+# def bb(q,data):
+#
+#     global r
+#     for i in range(1,101):
+#         # lock.acquire()
+#         r/=100
+#         qq=q.get()
+#         print(qq * i*r/data)
+#         data += 1
+#         # lock.release()
+#     print('r=%d'%r)
+#     print('线程2%d' % data)
+# def main():
+#     data=0
+#     a=threading.Thread(target=aa,args=(q,data))
+#     b=threading.Thread(target=bb,args=(q,data))
+#     a.start()
+#     b.start()
+#     a.join()
+#     b.join()
+# main()
+from bs4 import BeautifulSoup
+# import requests
+# import re,csv
+# response=requests.request('get','https://www.baidu.com',headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36'})
+# page=response.content
+# print(page)
+# bs=BeautifulSoup(page,'html.parser')
+# # print(bs)
+# bss=bs.find_all('img')
+# print(bss)
+# print(bs.select('a>p'))
+# for i in bss:
+#     print(i)
+#     print("")
+# print(bss)
+# goodsname=re.compile(r'<p class="name">(.*?)</p>')
+# goodsid=re.compile(r'/goods/detail/(.*?);')
+# goodsdiscount=re.compile(r'<p class="discount">(.*?)</p>')
+# goodsprice=re.compile(r'<p class="item_price">(.*?)</p>')
+# a=goodsid.findall(str(bss))
+# # a=[i for i in a if len(str(a))!=0]
+# b=goodsname.findall(str(bss))
+# # b=[i for i in b if len(str(a))!=0]
+# c=goodsdiscount.findall(str(bss))
+# # c=[i for i in c if len(str(a))!=0]
+# d=goodsprice.findall(str(bss))
+# # d=[i for i in d if len(str(a))!=0]
+# print(a,b,c,d)
+# with open('goods.csv','w',newline='',encoding='utf8') as f:
+#     ff=csv.writer(f)
+#     for i in range(len(a)):
+#         ff.writerow([a[i],b[i],c[i],d[i]])
+from lxml import etree
+
+html = '<html><body><h1>This is <a>a</a> test</h1></body></html>'
+# 将html转换成_Element对象
+_element = etree.HTML(html)
+# 通过xpath表达式获取h1标签中的文本
+text = _element.xpath('//h1')
+print(text)
+a=etree.tostring(text[0],method='text')
+print(a.decode('utf8'))
 
 
-L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
-ll=sorted(L,key=lambda x:[x[1],x[0].lower()],reverse=True)
-print(ll)

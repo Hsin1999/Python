@@ -511,15 +511,12 @@ from bs4 import BeautifulSoup
 #     ff=csv.writer(f)
 #     for i in range(len(a)):
 #         ff.writerow([a[i],b[i],c[i],d[i]])
-from lxml import etree
-
-html = '<html><body><h1>This is <a>a</a> test</h1></body></html>'
-# 将html转换成_Element对象
-_element = etree.HTML(html)
-# 通过xpath表达式获取h1标签中的文本
-text = _element.xpath('//h1')
-print(text)
-a=etree.tostring(text[0],method='text')
-print(a.decode('utf8'))
-
-
+# from lxml import etree
+# html = '<html><body><h1>This is <a>a</a> test</h1></body></html>'
+# # 将html转换成_Element对象
+# _element = etree.HTML(html)
+# # 通过xpath表达式获取h1标签中的文本
+# text = _element.xpath('//h1')
+# print(text)
+# a=etree.tostring(text[0],method='text')
+# print(a.decode('utf8'))

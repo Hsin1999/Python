@@ -30,9 +30,11 @@ async def download(a):# 下载图片文件到photo/
     global s
     tasks=[]
     photos=[]
+    print('正在获取图片源码')
     for i in a: #请求图片源码
         photos.append(asyncio.create_task(get_photo(i)))
     await asyncio.wait(photos)
+    print('获取成功',time.time()-t)
     for j in photos:#将图片保存到本地
         s+=1
         tasks.append(asyncio.create_task(download1(s,j.result())))
@@ -48,7 +50,7 @@ async def main():
     task2=asyncio.create_task(download(a))
     await asyncio.gather(task1,task2)
     y=time.time()-t
-    print('耗时%d'%y)
+    print('耗时%s'%y)
 asyncio.run(main())
 
 # import csv,time

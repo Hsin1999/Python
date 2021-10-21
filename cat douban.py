@@ -1,23 +1,30 @@
-import requests,re,os,csv,asyncio,time
+import requests,re,os,csv,asyncio,time,json
 from bs4 import BeautifulSoup
 t=time.time()
 path=os.path.realpath(__file__)
 header={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36'}
 response=requests.request('get','https://movie.douban.com/',headers=header)
+response1=requests.request('get','https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&page_limit=50&page_start=0',headers=header)
 bs=BeautifulSoup(response.content,'html.parser')
-bss=bs.body.find_all(class_="poster")
-# print(bss)
+bss=bs.find_all(class_="poster")
 rea=re.compile(r'src="(.*?)"')
 alt=re.compile(r'alt="(.*?)"')
 href=re.compile(r'href="(.*?)"')
 a,b,c=[],[],[]
+j=json.loads(response1.text)['subjects']
+for i in j:
+    a.append(i['cover'])
+    b.append(i['title'])
+    c.append(i['url'])
 s=0
+
 for i in bss:#获取所有链接到列表
     a.append(rea.findall(str(i))[0])
 for i in bss:
     b.append(alt.findall(str(i))[0])
 for i in bss:
     c.append(href.findall(str(i))[0])
+# print(a)
 async def save():
     print('开始保存电影标题和链接')
     with open(os.path.join(os.path.join(os.path.dirname(path), 'photo', r"电影列表.csv")), 'a', newline='',encoding='utf8') as f:

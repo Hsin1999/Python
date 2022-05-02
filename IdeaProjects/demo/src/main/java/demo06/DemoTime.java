@@ -26,7 +26,7 @@ public class DemoTime {
         simpleDateFormat1.setTimeZone(TimeZone.getTimeZone("America/New_York"));
         System.out.println(simpleDateFormat1.format(date1));
 
-//        LocalDate
+//        LocalDate:显示本地时间
         LocalDate localDate=LocalDate.of(1999,1,27);
         System.out.println(localDate);
         LocalTime localTime=LocalTime.now();
@@ -35,7 +35,7 @@ public class DemoTime {
         System.out.println(localDateTime);
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy MM dd HH:mm:ss", Locale.CHINA);
         System.out.println(dateTimeFormatter.format(localDateTime));
-//        ZonedDateTime plus：增加时间 minus：减少时间
+//        ZonedDateTime：显示本地日期时间  plus：增加时间 minus：减少时间
         ZonedDateTime zonedDateTime=ZonedDateTime.now();
         System.out.println(zonedDateTime);
         ZonedDateTime zonedDateTime1=ZonedDateTime.now(ZoneId.of("America/New_York"));

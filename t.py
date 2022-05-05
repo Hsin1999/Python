@@ -520,3 +520,6 @@ from bs4 import BeautifulSoup
 # print(text)
 # a=etree.tostring(text[0],method='text')
 # print(a.decode('utf8'))
+import mysql
+s = mysql.Database('47.101.53.77', 'root', 'ppaa1122', 'diaoxiaoyi')
+print(s.select_Mysql('select * from tblStudent'))

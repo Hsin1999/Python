@@ -1,5 +1,5 @@
 import pymysql
-#Datebase（地址，用户名，密码，数据库）
+#Datebase（地址，用户名，密码，数据库名称）
 class Database():
     def __init__(self,host,user,password,database):
         self.host=host
